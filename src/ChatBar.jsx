@@ -12,10 +12,10 @@ class ChatBar extends Component {
                 type: "incomingMessage",
                 content: messageInput.value,
                 username: currentUser.toLowerCase(),
-                id: Math.floor(100000 + Math.random() * 900000)
+                //id: Math.floor(100000 + Math.random() * 900000)
             }
             
-            console.log(newMessage);
+            //console.log(newMessage);
             const renderMessage = this.props.newMessage;
             renderMessage(newMessage);
 

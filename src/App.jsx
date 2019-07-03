@@ -34,6 +34,16 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // Websocket connection
+    this.socket = new WebSocket("ws://localhost:3001");
+    
+    const socketServer = this.socket;
+
+    socketServer.onopen = function (event) {
+      //socketServer.send("Test message from client"); 
+    };
+
+
     // After 3 seconds, set `loading` to false in the state.
     setTimeout(() => {
       this.setState({ loading: false, messageData: messageData }); // this triggers a re-render!
@@ -42,16 +52,28 @@ class App extends Component {
   }
 
   addNewMessage = (newMessageObject) => {
-    const oldMessageData = this.state.messageData;
-    const newMessageData = [...oldMessageData, newMessageObject];
-    this.setState({ messageData: newMessageData });
+    // Send new message object to socket server
+    const socketServer = this.socket;
+    socketServer.send(JSON.stringify(newMessageObject));
+
+    // Receive new message w/ uid from socket server
+    socketServer.onmessage = (event) => {
+      console.log('INCOMING DATA: ', event.data);
+      const newIncomingMsg = event.data;
+      
+      const oldMessageData = this.state.messages;
+      const newMessageData = [...oldMessageData, JSON.parse(newIncomingMsg)];
+      this.setState({ messages: newMessageData });
+    }
   }
+    
+
 
   render() {
     return (
       <div>
         <Nav />
-        <Main messageData={this.state.messageData} />
+        <Main messageData={this.state.messages} />
         <ChatBar currentUser={this.state.currentUser} 
         updateUser={ newUser => this.setState({ currentUser: newUser })} 
         newMessage={this.addNewMessage} />
