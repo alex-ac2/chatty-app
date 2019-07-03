@@ -41,13 +41,20 @@ class App extends Component {
     }, 2000)
   }
 
+  addNewMessage = (newMessageObject) => {
+    const oldMessageData = this.state.messageData;
+    const newMessageData = [...oldMessageData, newMessageObject];
+    this.setState({ messageData: newMessageData });
+  }
 
   render() {
     return (
       <div>
         <Nav />
         <Main messageData={this.state.messageData} />
-        <ChatBar currentUser={this.state.currentUser} />
+        <ChatBar currentUser={this.state.currentUser} 
+        updateUser={ newUser => this.setState({ currentUser: newUser })} 
+        newMessage={this.addNewMessage} />
       </div>
     );
   }

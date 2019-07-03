@@ -9,7 +9,8 @@ class MessageList extends Component {
 
         const messageItems = this.props.messageData.map( (message) => {
             if (message.type === "incomingMessage") {
-                return <Message username={message.username} content={message.content} />
+                return <Message username={message.username} content={message.content} 
+                id={message.id} key={message.id} />
             }
         });
         

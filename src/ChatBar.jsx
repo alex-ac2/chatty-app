@@ -1,18 +1,42 @@
 import React, {Component} from 'react';
 
 class ChatBar extends Component {
-
-    
+  
     _handleKeyDown = (event) => {
         const messageInput = event.target;
-        console.log(messageInput.value);
         if (event.keyCode === 13) {
             console.log("Enter was pressed");
+            const currentUser = this.props.currentUser;
+
+            const newMessage = {
+                type: "incomingMessage",
+                content: messageInput.value,
+                username: currentUser.toLowerCase(),
+                id: Math.floor(100000 + Math.random() * 900000)
+            }
+            
+            console.log(newMessage);
+            const renderMessage = this.props.newMessage;
+            renderMessage(newMessage);
+
             messageInput.value = "";
+
+            // Append new message
+
             
         } else {
             console.log("User is typing");
         }
+    }
+
+    _handleChangeUser = (event) => {
+        const userInput = event.target;
+        console.log(userInput.value);
+        const updateUser = this.props.updateUser;
+        updateUser(userInput.value);
+        // this.setState({ currentUser: userInput.value }, () => {
+        //     console.log('NEW-USER: ', this.state.currentUser);
+        // });
     }
 
 
@@ -20,7 +44,7 @@ class ChatBar extends Component {
       return (
         <footer className="chatbar">
           <input className="chatbar-username" placeholder="Your Name (Optional)" 
-          defaultValue={this.props.currentUser.toUpperCase()} />
+          defaultValue={this.props.currentUser.toUpperCase()}  onChange={this._handleChangeUser} />
           <input id="message-input" onKeyDown={this._handleKeyDown} name="message" 
           className="chatbar-message" placeholder="Type a message and hit ENTER" />
         </footer>
