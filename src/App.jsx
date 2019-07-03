@@ -81,10 +81,16 @@ class App extends Component {
     
   updateUser = (newUserName) => {
     console.log(this.state.currentUser, newUserName);
-    // const socketServer = this.socket;
-    // socketServer.send(JSON.stringify(newMessageObject));
-
+    const systemNotification = {
+      type: "incomingNotification",
+      content: `${this.state.currentUser} changed their name to ${newUserName}`,
+      date: Date.now()
+    }
     this.setState({ currentUser: newUserName })
+    
+    const socketServer = this.socket;
+    socketServer.send(JSON.stringify(systemNotification));
+
   }
 
 
