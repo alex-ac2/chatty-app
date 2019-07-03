@@ -79,6 +79,13 @@ class App extends Component {
     // }
   }
     
+  updateUser = (newUserName) => {
+    console.log(this.state.currentUser, newUserName);
+    // const socketServer = this.socket;
+    // socketServer.send(JSON.stringify(newMessageObject));
+
+    this.setState({ currentUser: newUserName })
+  }
 
 
   render() {
@@ -87,7 +94,7 @@ class App extends Component {
         <Nav />
         <Main messageData={this.state.messages} />
         <ChatBar currentUser={this.state.currentUser} 
-        updateUser={ newUser => this.setState({ currentUser: newUser })} 
+        updateUser={ newUser => this.updateUser(newUser)} 
         newMessage={this.addNewMessage} />
       </div>
     );
