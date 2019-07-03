@@ -36,11 +36,23 @@ class App extends Component {
   componentDidMount() {
     // Websocket connection
     this.socket = new WebSocket("ws://localhost:3001");
-    
     const socketServer = this.socket;
 
-    socketServer.onopen = function (event) {
+    socketServer.onopen = (event) => {
       //socketServer.send("Test message from client"); 
+      
+      // Update message
+      socketServer.onmessage = (event) => {
+        const newIncomingMsg = event.data;
+        console.log('INCOMING DATA: ', newIncomingMsg);
+        console.log('STATE: ', this.state);
+        
+        const oldMessageData = this.state.messages;
+        const newMessageData = [...oldMessageData, JSON.parse(newIncomingMsg)];
+        this.setState({ messages: newMessageData });
+      }
+
+
     };
 
 
@@ -57,14 +69,14 @@ class App extends Component {
     socketServer.send(JSON.stringify(newMessageObject));
 
     // Receive new message w/ uid from socket server
-    socketServer.onmessage = (event) => {
-      console.log('INCOMING DATA: ', event.data);
-      const newIncomingMsg = event.data;
+    // socketServer.onmessage = (event) => {
+    //   console.log('INCOMING DATA: ', event.data);
+    //   const newIncomingMsg = event.data;
       
-      const oldMessageData = this.state.messages;
-      const newMessageData = [...oldMessageData, JSON.parse(newIncomingMsg)];
-      this.setState({ messages: newMessageData });
-    }
+    //   const oldMessageData = this.state.messages;
+    //   const newMessageData = [...oldMessageData, JSON.parse(newIncomingMsg)];
+    //   this.setState({ messages: newMessageData });
+    // }
   }
     
 
