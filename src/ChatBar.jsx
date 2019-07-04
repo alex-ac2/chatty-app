@@ -41,9 +41,12 @@ class ChatBar extends Component {
         
         if (userInput.value === "") {
             updateUser("anonymous");
+        } else if (this.props.currentUser === userInput.value) {
+            console.log("no change");
         } else {
             updateUser(userInput.value);
         }
+
 
             
         // this.setState({ currentUser: userInput.value }, () => {

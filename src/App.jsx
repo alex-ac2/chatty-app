@@ -2,16 +2,34 @@ import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import messageData from './../build/messageData.js';
+import Navigation from './Nav.jsx';
 
+// GraphQL and Apollo Client
+import ApolloClient from 'apollo-boost';
+import { gql } from 'apollo-boost';
+import {ApolloProvider} from 'react-apollo';
+import {graphql} from 'react-apollo';
 
-function Nav() {
-  return (
-    <nav className="navbar">
-      < a href="/" className="navbar-brand">Chatty Bat</a>
-    </nav>
-  
-  );
-}
+// Apollo client
+const client = new ApolloClient({
+  uri: "http://localhost:5000/graphql"
+});
+
+// client
+//   .query({
+//     query: gql`
+//       {
+//         hello
+//       }
+//     `
+//   })
+//   .then(result => console.log(result));
+
+const helloApollo = gql`
+  {
+    hello
+  }
+`
 
 class Main extends Component {
   render() {
@@ -83,7 +101,7 @@ class App extends Component {
     console.log(this.state.currentUser, newUserName);
     const systemNotification = {
       type: "incomingNotification",
-      content: `${this.state.currentUser} changed their name to ${newUserName}`,
+      content: `${this.state.currentUser.toLowerCase()} changed their name to ${newUserName.toUpperCase()}`,
       date: Date.now()
     }
     this.setState({ currentUser: newUserName })
@@ -96,13 +114,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Nav />
-        <Main messageData={this.state.messages} />
-        <ChatBar currentUser={this.state.currentUser} 
-        updateUser={ newUser => this.updateUser(newUser)} 
-        newMessage={this.addNewMessage} />
-      </div>
+      <ApolloProvider client={client}>
+        <div>
+          <Navigation />
+          <Main messageData={this.state.messages} />
+          <ChatBar currentUser={this.state.currentUser} 
+          updateUser={ newUser => this.updateUser(newUser)} 
+          newMessage={this.addNewMessage} />
+        </div>
+      </ApolloProvider>
     );
   }
 }

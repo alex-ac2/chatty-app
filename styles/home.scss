@@ -70,7 +70,7 @@ body {
 }
 
 .navbar {
-  background: tomato;
+  background: rgb(126, 188, 190);
   border-bottom: 1px solid black;
   height: 60px;
   left: 0;
@@ -78,6 +78,8 @@ body {
   position: fixed;
   right: 0;
   top: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar-brand {
