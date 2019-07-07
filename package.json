@@ -45,7 +45,9 @@
     "webpack-dev-server": "2.3.0"
   },
   "dependencies": {
+    "@loona/react": "^1.0.0",
     "apollo-boost": "^0.4.3",
+    "apollo-client": "^2.6.3",
     "apollo-link-ws": "^1.0.18",
     "graphql": "^14.4.2",
     "react": "15.4.2",

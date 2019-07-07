@@ -10,27 +10,6 @@ import { gql } from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 import {graphql} from 'react-apollo';
 
-// Apollo client
-const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql"
-});
-
-// client
-//   .query({
-//     query: gql`
-//       {
-//         hello
-//       }
-//     `
-//   })
-//   .then(result => console.log(result));
-
-const helloApollo = gql`
-  {
-    hello
-  }
-`
-
 class Main extends Component {
   render() {
     return (
@@ -114,15 +93,13 @@ class App extends Component {
 
   render() {
     return (
-      <ApolloProvider client={client}>
-        <div>
-          <Navigation />
-          <Main messageData={this.state.messages} />
-          <ChatBar currentUser={this.state.currentUser} 
-          updateUser={ newUser => this.updateUser(newUser)} 
-          newMessage={this.addNewMessage} />
-        </div>
-      </ApolloProvider>
+      <div>
+        <Navigation />
+        <Main messageData={this.state.messages} />
+        <ChatBar currentUser={this.state.currentUser} 
+        updateUser={ newUser => this.updateUser(newUser)} 
+        newMessage={this.addNewMessage} />
+      </div>
     );
   }
 }
