@@ -43,5 +43,7 @@ Backend (Chatty-Server):
 ## Final Project
 
 Main Page:
+!["Main Page"](docs/screenshots/chatty-app_mainPage.png)
 
 Username update notification: 
+!["Username update notification"](docs/screenshots/chatty-app_notifications.png)
