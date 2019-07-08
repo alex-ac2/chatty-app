@@ -5,7 +5,7 @@ A lightweight chat room application made using react and WebSockets combined wit
 
 ### Usage
 
-This application relies on running `two node instances`.  Please `clone` the [Chatty-Server](https://github.com/alex-ac2/chatty-server) application running the necessary WebSocket connection and Apollo/GraphQL server.  
+This application relies on running **`two node instances`**.  Please **`clone`** the [Chatty-Server](https://github.com/alex-ac2/chatty-server) application running the necessary WebSocket connection and Apollo/GraphQL server.  
 
 (Upon completion of Chatty-Server local deployment)
 
@@ -19,7 +19,7 @@ open http://localhost:3000
 
 ### Dependencies
 
-Frontend (Chatty-App):
+Frontend **(Chatty-App)**:
 * React
 * Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
@@ -30,7 +30,7 @@ Frontend (Chatty-App):
 * Apollo-link-ws
 * Apollo-utilities 
 
-Backend (Chatty-Server):
+Backend **(Chatty-Server)**:
 * Express
 * WS
 * Uuid
