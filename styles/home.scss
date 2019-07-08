@@ -1,19 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
 
+
 h1 {
   color: tomato;
 }
 body {
   background: white;
-  color: black;
+  color: rgb(75, 75, 67);
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   margin: 70px 0;
 }
 
 .chatbar {
-  background: tomato;
+  background:  rgb(159, 252, 255);
   border-top: 1px solid black;
   bottom: 0;
   display: flex;
@@ -21,6 +22,10 @@ body {
   padding: 5px;
   position: fixed;
   right: 0;
+
+  input {
+    border-radius: 5px;
+  }
 }
 
 .chatbar-message,
@@ -70,7 +75,7 @@ body {
 }
 
 .navbar {
-  background: rgb(126, 188, 190);
+  background: rgb(159, 252, 255);
   border-bottom: 1px solid black;
   height: 60px;
   left: 0;

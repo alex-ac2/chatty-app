@@ -4,12 +4,6 @@ import MessageList from './MessageList.jsx';
 import messageData from './../build/messageData.js';
 import Navigation from './Nav.jsx';
 
-// GraphQL and Apollo Client
-import ApolloClient from 'apollo-boost';
-import { gql } from 'apollo-boost';
-import {ApolloProvider} from 'react-apollo';
-import {graphql} from 'react-apollo';
-
 class Main extends Component {
   render() {
     return (
@@ -24,7 +18,7 @@ class App extends Component {
 
     this.state = { 
       loading: true, 
-      currentUser: 'jack', 
+      currentUser: 'D0loresH4ze', 
       messages: [], 
       messageData: []
     };
@@ -64,16 +58,6 @@ class App extends Component {
     // Send new message object to socket server
     const socketServer = this.socket;
     socketServer.send(JSON.stringify(newMessageObject));
-
-    // Receive new message w/ uid from socket server
-    // socketServer.onmessage = (event) => {
-    //   console.log('INCOMING DATA: ', event.data);
-    //   const newIncomingMsg = event.data;
-      
-    //   const oldMessageData = this.state.messages;
-    //   const newMessageData = [...oldMessageData, JSON.parse(newIncomingMsg)];
-    //   this.setState({ messages: newMessageData });
-    // }
   }
     
   updateUser = (newUserName) => {

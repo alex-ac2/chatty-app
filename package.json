@@ -45,6 +45,10 @@
     "webpack-dev-server": "2.3.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@loona/react": "^1.0.0",
     "apollo-boost": "^0.4.3",
     "apollo-client": "^2.6.3",

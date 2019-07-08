@@ -19,6 +19,7 @@ const httpLink = new HttpLink({
     uri: "http://localhost:5000/graphql"
 });
 
+// Apollo subscription socket connection
 const wsLink = new WebSocketLink({
     uri: `ws://localhost:5000/graphql`,
     options: {
@@ -26,6 +27,7 @@ const wsLink = new WebSocketLink({
     }
 });
 
+// Manage query and subscription link --> boilerplate code from Ben Awad GraphQL sample 
 const link = split(
     ({ query }) => {
         const { kind, operation } = getMainDefinition(query);
