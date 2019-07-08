@@ -44,5 +44,4 @@ Backend (Chatty-Server):
 
 Main Page:
 
-
 Username update notification: 
